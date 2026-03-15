@@ -71,11 +71,26 @@ python3 demo.py
 ### Run Tests
 
 ```bash
-# All 49 tests (no API key needed)
+# Unit tests — 49 tests (no API key needed)
 python3 test_validator.py
 
-# With verbose output
-python3 -m pytest test_validator.py -v
+# Integration tests — 8 tests with mocked LLM (no API key needed)
+python3 test_integration.py
+
+# All 57 tests
+make test-all
+```
+
+### Compare Providers Side-by-Side
+
+```bash
+# Set multiple API keys, then run all in parallel
+export GROQ_API_KEY=...
+export ANTHROPIC_API_KEY=...
+python3 compare_providers.py
+
+# Quick comparison (2 products only)
+python3 compare_providers.py --max-products 2 --channels facebook_ad,email_subject
 ```
 
 ### Commands That Don't Need an API Key
@@ -83,7 +98,21 @@ python3 -m pytest test_validator.py -v
 ```bash
 python3 validator.py                    # Validate existing generated_hooks.json
 python3 quality_judges.py --skip-llm    # Run dedup + composite on existing hooks
-python3 test_validator.py               # Run all 49 unit tests
+python3 test_validator.py               # Unit tests (49)
+python3 test_integration.py             # Integration tests with mocked LLM (8)
+```
+
+### Using Make
+
+```bash
+make install     # Install dependencies
+make demo        # Quick demo (3 products)
+make pipeline    # Full pipeline
+make fast        # Fast mode (skip LLM eval)
+make test        # Unit tests
+make test-all    # Unit + integration tests
+make compare     # Multi-provider parallel comparison
+make clean       # Remove generated output files
 ```
 
 ## What Each File Does
@@ -98,7 +127,11 @@ python3 test_validator.py               # Run all 49 unit tests
 | `pipeline.py` | 6-step pipeline orchestrator |
 | `demo.py` | Quick demo with formatted output |
 | `test_validator.py` | 49 unit tests |
+| `test_integration.py` | 8 integration tests with mocked LLM (no API key needed) |
+| `compare_providers.py` | Run all configured providers in parallel, compare output side-by-side |
 | `products.json` | 10 real Quince products sourced from quince.com |
+| `Makefile` | Convenience targets (`make demo`, `make test-all`, `make compare`, etc.) |
+| `sample_output/` | Pre-generated hooks from Claude Sonnet for reviewer reference |
 
 ## Output Files
 
@@ -129,14 +162,23 @@ python3 test_validator.py               # Run all 49 unit tests
 | Groq | Llama 3.3 70B | Free | `GROQ_API_KEY` |
 | Anthropic | Claude Sonnet | ~$0.003/hook | `ANTHROPIC_API_KEY` |
 | OpenAI | GPT-4o-mini | ~$0.001/hook | `OPENAI_API_KEY` |
+| Google | Gemini 2.0 Flash | Free tier | `GEMINI_API_KEY` |
 
-Auto-detected based on which environment variable is set.
+Auto-detected based on which environment variable is set. Set multiple keys and run `make compare` to evaluate providers side-by-side.
 
 ## See Also
 
 - `technical_note.md` — 1-page strategy document (pipeline, metrics, quality loop)
 - `WALKTHROUGH.md` — Detailed design decisions and tradeoffs
 - `IMPROVEMENT_PLAN.md` — Honest self-assessment and prioritized improvements
-- `ai_process_log.md` — AI-assisted development process + human bug fix
+- `ai_process_log.md` — AI-assisted development process + human bug fixes
 - `data_sourcing_log.md` — How real Quince product data was sourced
-# ProjectQuince
+
+## Sample Output
+
+Pre-generated output from Claude Sonnet is in `sample_output/` so you can review hook quality without running the pipeline. Key stats from the end-to-end run:
+
+- **90 hooks** generated (10 products x 3 channels x 3 types) in ~100s
+- **89/90 passed** validation (1 legitimate price-rounding catch: `$149` vs `$149.90`)
+- **0.998 corpus uniqueness** — 1 near-duplicate pair correctly flagged
+- **4/4 brand voice** on spot-checked hooks with full justification traces

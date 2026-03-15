@@ -1,0 +1,302 @@
+[
+  {
+    "product_id": "QNC-001",
+    "product_name": "Mongolian Cashmere Crewneck Sweater",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "Grade-A Mongolian cashmere: 15.8-16.2 microns, 12 gauge knit, 34-36mm fibers. Premium craft.",
+      "value_driven": "$50 cashmere crewneck. What retails for $148. Direct-to-you pricing cuts the middleman.",
+      "lifestyle": "Morning coffee, wool coat draped over your chair. Underneath: buttery cashmere that breathes."
+    }
+  },
+  {
+    "product_id": "QNC-002",
+    "product_name": "Mongolian Cashmere Tee",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "Grade-A Mongolian cashmere at 15.8-16.2 microns creates unmatched softness in this essential tee.",
+      "value_driven": "Premium cashmere tee for $44.90 \u2014 typically $115 retail. No middleman, just pure luxury.",
+      "lifestyle": "Slip into buttery cashmere that drapes beautifully under your blazer for effortless boardroom elegance."
+    }
+  },
+  {
+    "product_id": "QNC-003",
+    "product_name": "Mongolian Cashmere Cardigan Sweater",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "15.1 micron Mongolian cashmere with 12-gauge knit creates the ultra-soft texture luxury brands charge $159 for.",
+      "value_driven": "Skip department store markups. Premium Grade-A Mongolian cashmere cardigan for $79.90 vs $159 retail.",
+      "lifestyle": "Shell buttons catch morning light as you layer this cropped cashmere cardigan over silk camisoles."
+    }
+  },
+  {
+    "product_id": "QNC-004",
+    "product_name": "Mongolian Cashmere Ribbed Beanie",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "Grade-A Mongolian cashmere + 7-gauge knit = naturally temperature-regulating fibers that adapt",
+      "value_driven": "Premium Mongolian cashmere beanie: $34.90 vs. $89.50 retail. Direct-to-consumer cuts the markup",
+      "lifestyle": "Charcoal cashmere ribbed against your temples, breathable warmth from city sidewalks to mountain trails"
+    }
+  },
+  {
+    "product_id": "QNC-005",
+    "product_name": "100% European Linen Relaxed Long Sleeve Shirt",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "European flax linen gets softer with each wash\u2014garment-washed for instant lived-in comfort.",
+      "value_driven": "Premium European linen shirt: $42 vs $145 retail. Same luxury, no middleman markup.",
+      "lifestyle": "Weekend mornings call for breathable linen that moves with you\u2014effortlessly refined, naturally soft."
+    }
+  },
+  {
+    "product_id": "QNC-006",
+    "product_name": "Organic Cotton Stretch Poplin Dress Shirt",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "98% organic cotton with 2% Lycra creates 4-way stretch poplin\u2014comfort meets crisp elegance.",
+      "value_driven": "$39.90 organic cotton dress shirt vs. $119 retail. Premium quality, no middleman markup.",
+      "lifestyle": "Mother-of-pearl buttons catch office light as you adjust metal collar stays before the big meeting."
+    }
+  },
+  {
+    "product_id": "QNC-007",
+    "product_name": "Classic Organic Percale Sheet Set",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "Long-staple organic cotton + 270-thread percale weave = SleepFoundation.org's Best Cooling Sheets.",
+      "value_driven": "Premium organic percale sheets: $79.90 vs $148 retail. No middleman, just pure quality.",
+      "lifestyle": "Crisp, hotel-fresh percale that breathes all night. Wake up cool, never sticky or overheated."
+    }
+  },
+  {
+    "product_id": "QNC-008",
+    "product_name": "Bamboo Sheet Set",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "300 thread count bamboo sateen weave creates sheets that are silky soft yet naturally cooling",
+      "value_driven": "Premium bamboo sheets that retail for $229, yours for $99.90 by cutting out the middleman",
+      "lifestyle": "Sink into cool, moisture-wicking bamboo that keeps you comfortable through warm summer nights"
+    }
+  },
+  {
+    "product_id": "QNC-009",
+    "product_name": "100% Mulberry Silk Pillowcase",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "22-Momme mulberry silk prevents hair breakage while you sleep\u2014OEKO-TEX certified chemical-free.",
+      "value_driven": "Premium 100% mulberry silk pillowcase for $44.90 vs. $69 retail\u2014no middleman markup here.",
+      "lifestyle": "Wake up with silky smooth hair and glowing skin\u2014your secret lies in pure mulberry silk threads."
+    }
+  },
+  {
+    "product_id": "QNC-010",
+    "product_name": "European Linen Duvet Cover Set",
+    "channel": "facebook_ad",
+    "hooks": {
+      "educational": "150 GSM European flax linen naturally regulates temperature\u2014pre-washed for instant softness that improves with age.",
+      "value_driven": "Premium European linen bedding for $149.90 vs $344 retail. No middleman, just pure quality direct to you.",
+      "lifestyle": "Sink into softly rumpled linen that whispers against your skin\u2014effortless luxury in 9 sophisticated hues."
+    }
+  },
+  {
+    "product_id": "QNC-001",
+    "product_name": "Mongolian Cashmere Crewneck Sweater",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "15.8-16.2 micron cashmere: what makes it grade-A",
+      "value_driven": "$50 cashmere vs $148 retail? We cut the middleman",
+      "lifestyle": "Rich burgundy cashmere warming your morning coffee"
+    }
+  },
+  {
+    "product_id": "QNC-002",
+    "product_name": "Mongolian Cashmere Tee",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "15.8-16.2 micron Mongolian cashmere luxury",
+      "value_driven": "$44.90 cashmere tee (retail: $115). No middleman.",
+      "lifestyle": "Cashmere softness under your blazer all day"
+    }
+  },
+  {
+    "product_id": "QNC-003",
+    "product_name": "Mongolian Cashmere Cardigan Sweater",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "15.1 micron Mongolian cashmere cardigan",
+      "value_driven": "$79.90 vs $159 retail: premium minus markup",
+      "lifestyle": "Shell buttons meet cozy weight cashmere luxury"
+    }
+  },
+  {
+    "product_id": "QNC-004",
+    "product_name": "Mongolian Cashmere Ribbed Beanie",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "7-gauge knit Grade-A Mongolian cashmere beanie",
+      "value_driven": "$34.90 cashmere beanie (retails $89.50)",
+      "lifestyle": "Charcoal cashmere warmth for snowy mornings"
+    }
+  },
+  {
+    "product_id": "QNC-005",
+    "product_name": "100% European Linen Relaxed Long Sleeve Shirt",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "European Flax Linen: Garment-washed softness",
+      "value_driven": "$42 Premium Linen vs $145 Retail \u2014 No Middleman",
+      "lifestyle": "Weekend mornings in lived-in luxury linen"
+    }
+  },
+  {
+    "product_id": "QNC-006",
+    "product_name": "Organic Cotton Stretch Poplin Dress Shirt",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "98% organic cotton, 2% Lycra: 4-way stretch",
+      "value_driven": "$39.90 vs $119 retail\u2014no middleman markup",
+      "lifestyle": "Mother-of-pearl buttons catch light in boardroom"
+    }
+  },
+  {
+    "product_id": "QNC-007",
+    "product_name": "Classic Organic Percale Sheet Set",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "Why 270 thread count beats 1000+ for hot sleepers",
+      "value_driven": "$79.90 percale sheets (retail $148) direct",
+      "lifestyle": "Wake up cool, crisp & refreshed every morning"
+    }
+  },
+  {
+    "product_id": "QNC-008",
+    "product_name": "Bamboo Sheet Set",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "300 thread sateen weave bamboo: naturally cool",
+      "value_driven": "$99.90 bamboo sheets (retail $229) no middleman",
+      "lifestyle": "Wake up refreshed: silky bamboo sheets stay cool"
+    }
+  },
+  {
+    "product_id": "QNC-009",
+    "product_name": "100% Mulberry Silk Pillowcase",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "22-Momme Weight Mulberry Silk Reduces Hair Breakage",
+      "value_driven": "$44.90 Silk Pillowcase (Retail $69) Direct",
+      "lifestyle": "Wake Up With Smoother Hair, Less Frizz Daily"
+    }
+  },
+  {
+    "product_id": "QNC-010",
+    "product_name": "European Linen Duvet Cover Set",
+    "channel": "email_subject",
+    "hooks": {
+      "educational": "150 GSM European flax linen: the perfect weight",
+      "value_driven": "$149 vs $344 retail\u2014no middleman markup here",
+      "lifestyle": "Pre-washed linen that whispers luxury nightly"
+    }
+  },
+  {
+    "product_id": "QNC-001",
+    "product_name": "Mongolian Cashmere Crewneck Sweater",
+    "channel": "sms",
+    "hooks": {
+      "educational": "Grade-A Mongolian cashmere at 15.8-16.2 micron count creates that cloud-soft feel. Our crewneck's 12-gauge knit delivers cozy weight.",
+      "value_driven": "Premium Mongolian cashmere crewneck: $50 vs $148 retail. Skip the markups, get the luxury. Free-roaming goat fibers, direct to you.",
+      "lifestyle": "Rich burgundy cashmere against crisp white sheets. Monday meetings feel different when your sweater whispers luxury with every movement."
+    }
+  },
+  {
+    "product_id": "QNC-002",
+    "product_name": "Mongolian Cashmere Tee",
+    "channel": "sms",
+    "hooks": {
+      "educational": "Grade-A Mongolian Cashmere at 15.8-16.2 microns\u2014the finer the fiber, the softer the feel. This tee delivers luxury at $44.90.",
+      "value_driven": "Premium cashmere tee for $44.90 vs. $115 retail. Same artisan quality, minus the traditional markups. Direct-to-you pricing.",
+      "lifestyle": "Slip into buttery-soft cashmere that layers perfectly under your blazer for client meetings, then transitions to weekend ease."
+    }
+  },
+  {
+    "product_id": "QNC-003",
+    "product_name": "Mongolian Cashmere Cardigan Sweater",
+    "channel": "sms",
+    "hooks": {
+      "educational": "Grade-A Mongolian cashmere with 15.1 micron fibers and 34-36mm length creates unmatched softness in our temperature-regulating cardigan.",
+      "value_driven": "Artisan-quality Mongolian cashmere cardigan for $79.90 (retail $159) by cutting out traditional markups. Premium without the premium price.",
+      "lifestyle": "Shell buttons catch morning light as you layer this cozy-weight cashmere over silk\u2014the perfect polished finish for coffee meetings."
+    }
+  },
+  {
+    "product_id": "QNC-004",
+    "product_name": "Mongolian Cashmere Ribbed Beanie",
+    "channel": "sms",
+    "hooks": {
+      "educational": "Grade-A Mongolian cashmere + 7-gauge knit = naturally temperature-regulating luxury. This ribbed beanie breathes with you.",
+      "value_driven": "Premium Mongolian cashmere beanie, $34.90 vs $89.50 retail. Skip the middleman markup, keep the artisan quality.",
+      "lifestyle": "Wind cuts through the city streets, but Grade-A Mongolian cashmere wraps your head in cloud-soft warmth. Adjustable cuff, perfect fit."
+    }
+  },
+  {
+    "product_id": "QNC-005",
+    "product_name": "100% European Linen Relaxed Long Sleeve Shirt",
+    "channel": "sms",
+    "hooks": {
+      "educational": "OEKO-TEX certified European flax linen naturally breathes through its loose fiber structure\u2014hypoallergenic luxury at $42.",
+      "value_driven": "$42 for garment-washed European linen that retails elsewhere for $145. Premium quality, minus the markup.",
+      "lifestyle": "Coffee on the terrace, sleeves rolled up, French Blue linen catching the morning breeze\u2014effortlessly refined."
+    }
+  },
+  {
+    "product_id": "QNC-006",
+    "product_name": "Organic Cotton Stretch Poplin Dress Shirt",
+    "channel": "sms",
+    "hooks": {
+      "educational": "Mother-of-pearl buttons + 4-way stretch poplin weave = the dress shirt upgrade your wardrobe deserves. 98% organic cotton, 2% Lycra.",
+      "value_driven": "$39.90 vs. $119 retail. Premium organic cotton dress shirts without the department store markup. Fair wage manufacturing included.",
+      "lifestyle": "Monday morning boardroom. Your navy gingham shirt moves with you through presentations, metal collar stays keeping lines crisp all day."
+    }
+  },
+  {
+    "product_id": "QNC-007",
+    "product_name": "Classic Organic Percale Sheet Set",
+    "channel": "sms",
+    "hooks": {
+      "educational": "Long-staple cotton with 270 thread count percale weave creates the crisp, hotel-quality coolness that earned SleepFoundation.org's Best Award.",
+      "value_driven": "OEKO-TEX certified organic cotton sheets: $79.90 vs. $148 retail. Skip the markup, invest in windmill-powered premium bedding.",
+      "lifestyle": "Slip into crisp white percale that breathes like morning air\u2014cool against warm skin, getting softer with each Sunday wash ritual."
+    }
+  },
+  {
+    "product_id": "QNC-008",
+    "product_name": "Bamboo Sheet Set",
+    "channel": "sms",
+    "hooks": {
+      "educational": "300 thread count bamboo sateen creates that signature silky-soft feel while wicking moisture naturally. OEKO-TEX certified. $99.90",
+      "value_driven": "Premium bamboo sheets typically retail for $229. Cut the middleman markup\u2014get SleepFoundation's Best Bamboo Sheets for $99.90",
+      "lifestyle": "Slip into cool bamboo sateen that breathes with your body temperature. Wake refreshed, never overheated. $99.90"
+    }
+  },
+  {
+    "product_id": "QNC-009",
+    "product_name": "100% Mulberry Silk Pillowcase",
+    "channel": "sms",
+    "hooks": {
+      "educational": "22-momme weight silk means denser weave, stronger fibers. Our OEKO-TEX certified pillowcase reduces hair breakage naturally.",
+      "value_driven": "Premium mulberry silk pillowcase for $44.90 vs $69 retail. No middleman markups, just luxury bedding at fair prices.",
+      "lifestyle": "Wake up with smooth, tangle-free hair cascading over hypoallergenic silk. Temperature-regulating comfort all night long."
+    }
+  },
+  {
+    "product_id": "QNC-010",
+    "product_name": "European Linen Duvet Cover Set",
+    "channel": "sms",
+    "hooks": {
+      "educational": "150 GSM European flax linen is the sweet spot\u2014heavy enough for durability, light enough for year-round comfort. Pre-washed for instant softness.",
+      "value_driven": "Premium European linen duvet cover sets for $149.90 vs $344 retail. Same luxury quality, minus the traditional markup.",
+      "lifestyle": "Sink into crisp European linen that whispers against your skin, softening with each wash into your most coveted bedtime ritual."
+    }
+  }
+]

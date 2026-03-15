@@ -1,0 +1,480 @@
+{
+  "total_hooks": 90,
+  "passed": 90,
+  "failed": 0,
+  "failures": [],
+  "diversity_warnings": [
+    {
+      "product": "Mongolian Cashmere Crewneck Sweater",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 31 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 37 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 35 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Tee",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 31 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 31 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 35 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Cardigan Sweater",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 41 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 43 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Ribbed Beanie",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 46 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 49 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "100% European Linen Relaxed Long Sleeve Shirt",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 42 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 37 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Organic Cotton Stretch Poplin Dress Shirt",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 41 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 41 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Classic Organic Percale Sheet Set",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 38 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 32 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 21 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Bamboo Sheet Set",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 44 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 46 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "100% Mulberry Silk Pillowcase",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 26 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 27 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 26 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "European Linen Duvet Cover Set",
+      "channel": "facebook_ad",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 38 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 28 chars, minimum is 50 for facebook_ad"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 29 chars, minimum is 50 for facebook_ad"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Crewneck Sweater",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 21 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Cardigan Sweater",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 21 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Ribbed Beanie",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 16 chars, minimum is 24 for email_subject"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 19 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "100% European Linen Relaxed Long Sleeve Shirt",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 19 chars, minimum is 24 for email_subject"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 16 chars, minimum is 24 for email_subject"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 21 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "Classic Organic Percale Sheet Set",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 23 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "Bamboo Sheet Set",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 23 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "100% Mulberry Silk Pillowcase",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 18 chars, minimum is 24 for email_subject"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 20 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "European Linen Duvet Cover Set",
+      "channel": "email_subject",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 22 chars, minimum is 24 for email_subject"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 20 chars, minimum is 24 for email_subject"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Crewneck Sweater",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 56 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 51 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 43 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Tee",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 57 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 43 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 62 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Cardigan Sweater",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 40 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 40 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 42 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "Mongolian Cashmere Ribbed Beanie",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 40 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 42 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 46 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "100% European Linen Relaxed Long Sleeve Shirt",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 39 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 34 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 26 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "Organic Cotton Stretch Poplin Dress Shirt",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 47 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 38 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 40 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "Bamboo Sheet Set",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 61 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "100% Mulberry Silk Pillowcase",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "educational: only 53 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 47 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 51 chars, minimum is 64 for sms"
+        }
+      ]
+    },
+    {
+      "product": "European Linen Duvet Cover Set",
+      "channel": "sms",
+      "issues": [
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "value_driven: only 58 chars, minimum is 64 for sms"
+        },
+        {
+          "rule": "min_length",
+          "passed": false,
+          "detail": "lifestyle: only 61 chars, minimum is 64 for sms"
+        }
+      ]
+    }
+  ]
+}

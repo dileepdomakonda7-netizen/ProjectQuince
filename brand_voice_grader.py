@@ -42,7 +42,7 @@ def grade_hook(hook_text: str, product: dict, hook_type: str, channel: str,
 
     Returns a dict with scores (0 or 1) for each rubric dimension plus justification.
     """
-    from hook_generator import _get_provider, _create_client, _get_model, _call_llm
+    from hook_generator import _get_provider, _create_client, _get_model, _call_llm, _parse_json_response
 
     if provider is None:
         provider = _get_provider()
@@ -76,15 +76,7 @@ Score each dimension 0 or 1. Return ONLY valid JSON (no markdown, no code fences
 }}"""
 
     raw_text = _call_llm(client, provider, model, GRADER_SYSTEM_PROMPT, user_prompt)
-
-    # Strip markdown code fences if present
-    if raw_text.startswith("```"):
-        raw_text = raw_text.split("\n", 1)[1] if "\n" in raw_text else raw_text[3:]
-    if raw_text.endswith("```"):
-        raw_text = raw_text[:-3]
-    raw_text = raw_text.strip()
-
-    scores = json.loads(raw_text)
+    scores = _parse_json_response(raw_text)
     return scores
 
 
