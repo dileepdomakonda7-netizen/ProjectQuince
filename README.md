@@ -297,8 +297,8 @@ Pre-generated output is in `sample_output/` — no setup needed to review hook q
 
 ## See Also
 
-- `technical_note.md` — 1-page strategy document (pipeline, metrics, quality loop)
-- `WALKTHROUGH.md` — Detailed design decisions and tradeoffs
-- `IMPROVEMENT_PLAN.md` — Honest self-assessment and prioritized improvements
-- `ai_process_log.md` — AI-assisted development process + human bug fixes
-- `data_sourcing_log.md` — How real Quince product data was sourced
+- [technical_note.md](technical_note.md) — 1-page strategy document (pipeline, metrics, quality loop)
+- [WALKTHROUGH.md](WALKTHROUGH.md) — Detailed design decisions and tradeoffs
+- [IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md) — Honest self-assessment and prioritized improvements
+- [ai_process_log.md](ai_process_log.md) — AI-assisted development process + human bug fixes
+- [data_sourcing_log.md](data_sourcing_log.md) — How real Quince product data was sourced
