@@ -308,3 +308,60 @@ Replaced the ASCII one-liner architecture diagram in the README with 4 Mermaid d
 4. **File Dependency Map** — every source file and how they import from each other, including test coverage lines
 
 **Why Mermaid over ASCII?** GitHub renders `\`\`\`mermaid` blocks as interactive SVG diagrams. They're zoomable, have hover states, and look professional. For a take-home submission, visual polish signals that you care about communication — which is explicitly called out in the evaluation criteria.
+
+---
+
+## Scaling Test: Expanding to 15 Products Across 9 Categories
+
+After the initial 10-product run, I noticed the product catalog was skewed — 4 cashmere products and 4 home products, but nothing from outerwear, pants, bags, or activewear. For a pipeline that claims to handle "thousands of products," only covering 5 categories is a weak demo.
+
+### Data Collection
+
+Scraped 5 new product pages from quince.com to fill every gap:
+
+| ID | Product | Category | Price | Retail | Why this product |
+|---|---|---|---|---|---|
+| QNC-011 | Responsible Down Long Puffer Jacket | Outerwear | $200 | $350 | Technical specs (700+ fill power, -48°F rated) — tests whether generator handles performance claims |
+| QNC-012 | Italian Wool Straight Leg Pants | Pants | $99.90 | $228 | Professional workwear — different target persona than casual cashmere |
+| QNC-013 | Washable Stretch Silk Palazzo Pants | Pants | $99.90 | $278 | "Machine washable silk" is a counterintuitive selling point — tests creative hook angles |
+| QNC-014 | Italian Leather Diamond Stitch Tote | Bags | $169.90 | $448 | First non-clothing product with dimensions instead of sizes — tests schema flexibility |
+| QNC-015 | ProTech Golf Pants | Activewear | $49.90 | $128 | Recycled materials with specific metrics ("8.3 recycled bottles per garment") — tests sustainability specificity |
+
+### Pipeline Results (15 products, 135 hooks)
+
+```
+Total hooks:     135 (15 products × 3 channels × 3 types)
+Passed:          126/135 (93.3%)
+Failed:          9/135 (6.7%)
+Corpus uniqueness: 0.999 (945 pairwise comparisons, 1 near-duplicate)
+```
+
+### What the Failures Revealed
+
+All 9 failures were the **exact same pattern** — Claude rounding `.90` prices to whole numbers:
+
+```
+$99.90  → "$99"   (Italian Wool Pants, Silk Palazzo Pants)
+$49.90  → "$50"   (ProTech Golf Pants)
+$169.90 → "$170"  (Italian Leather Tote)
+$149.90 → "$149"  (European Linen Duvet Cover)
+$34.90  → "$35"   (Cashmere Beanie)
+```
+
+This is interesting because it exposes a systematic LLM behavior — Claude Sonnet consistently rounds `.90` prices to the nearest dollar in short-form copy (especially email subjects where space is tight). The model is likely optimizing for readability ("$99" reads cleaner than "$99.90") but sacrificing accuracy.
+
+**Why I didn't "fix" this by loosening the validator:** It would be tempting to add whole-dollar rounding tolerance (e.g., accept `$99` for a `$99.90` product). But in advertising, price accuracy matters — showing `$99` when checkout says `$99.90` is technically misleading. The correct fix is in the **prompt**, not the validator: adding `"Always use the EXACT price from the product data, including cents"` to the generation prompt. The validator is doing its job — the LLM needs better instructions.
+
+**What this validates about the architecture:** The price accuracy guardrail (Bug 1's fix) scales correctly. It caught 0 false positives and 9 true positives across 135 hooks spanning 9 product categories — from cashmere sweaters to golf pants to leather totes. The validator doesn't care what category or channel it's checking; the price cross-reference works uniformly.
+
+### Dedup at Scale
+
+With 15 products, pairwise comparisons jumped from 405 to 945. The dedup correctly caught 1 near-duplicate:
+
+```
+[email_subject/value_driven] 75% similar:
+  Cashmere Beanie:     "$35 vs $90 retail: skip the middleman markup"
+  Linen Duvet Cover:   "$149 vs $344 retail: skip the middleman markup"
+```
+
+These are different products at different price points, but the hook structure is identical — `"$X vs $Y retail: skip the middleman markup"`. The dedup flagged the *template*, not the numbers. This is the right behavior: even though the prices are product-specific, the copy formula is lazy and both hooks would feel repetitive to a customer seeing them back-to-back.
