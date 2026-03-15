@@ -235,3 +235,76 @@ The dedup analysis flagged 1 near-duplicate pair at 75% word overlap:
 ```
 
 This is a correct flag — both hooks reference the same micron range because both products genuinely share that material spec. But as ad copy, they're too similar to run simultaneously. In production, this signal would trigger prompt refinement to force each hook to reference a *different* product attribute (e.g., the tee's lightweight construction vs. the crewneck's cozy weight).
+
+---
+
+## Code Consistency Fix: Brand Voice Grader JSON Parsing
+
+While reviewing the codebase end-to-end, I noticed `brand_voice_grader.py` had its own inline JSON parsing logic that was fragile compared to `hook_generator.py`'s robust `_parse_json_response()`:
+
+```python
+# brand_voice_grader.py (BEFORE — fragile):
+if raw_text.startswith("```"):
+    raw_text = raw_text.split("\n", 1)[1] if "\n" in raw_text else raw_text[3:]
+if raw_text.endswith("```"):
+    raw_text = raw_text[:-3]
+raw_text = raw_text.strip()
+scores = json.loads(raw_text)  # crashes if LLM adds any text around the JSON
+
+# hook_generator.py (robust):
+def _parse_json_response(raw_text):
+    # Handles: code fences anywhere in response, text before/after JSON,
+    # nested structures, fallback regex extraction of first {...} block
+```
+
+The grader's parser would crash if the LLM wrapped JSON in a sentence like `"Here are the scores: {...}"` or placed code fences mid-response instead of at the start. This was a ticking bomb — it worked during testing because Claude Sonnet returns clean JSON, but would fail with Groq/Llama which tends to add conversational text around its responses.
+
+**The fix:** One-line change — import and reuse the shared parser:
+
+```python
+from hook_generator import _get_provider, _create_client, _get_model, _call_llm, _parse_json_response
+
+raw_text = _call_llm(client, provider, model, GRADER_SYSTEM_PROMPT, user_prompt)
+scores = _parse_json_response(raw_text)  # robust, handles all edge cases
+```
+
+This is the kind of inconsistency that creeps in when AI generates two files independently — each solves the same parsing problem differently, and the second solution is worse. A quick grep for `json.loads` across the project caught it.
+
+---
+
+## Developer Experience: Makefile, Sample Output, and Documentation
+
+After the core pipeline was working, I shifted focus to the reviewer's experience — how quickly can someone understand, run, and evaluate this project?
+
+### Sample Output Strategy
+
+The `.gitignore` correctly excludes generated files (they're recreated by the pipeline). But this means a reviewer has to set up an API key and run the pipeline before they can see a single hook. For a take-home submission, that's too much friction.
+
+**Solution:** Created a `sample_output/` directory (not gitignored) with pre-generated hooks from the Claude Sonnet end-to-end run. The reviewer can open `sample_output/generated_hooks_claude_sonnet.json` and immediately evaluate hook quality — specific, diverse, channel-appropriate copy with real Quince product data. Also added an inline sample hooks table directly in the README so the output is visible without clicking into any files.
+
+### Makefile
+
+Added a `Makefile` with targets that map to the most common workflows:
+
+```makefile
+make demo        # Quick demo (3 products, ~15 seconds)
+make pipeline    # Full pipeline (all 10 products)
+make fast        # Fast mode (skip LLM eval)
+make test        # Unit tests (49)
+make test-all    # Unit + integration tests (57)
+make compare     # Multi-provider parallel comparison
+make clean       # Remove generated output files
+```
+
+The goal is that a reviewer never has to remember `GROQ_API_KEY=... python3 pipeline.py --skip-judges` — they just run `make fast`. Every target is self-documenting (`make` with no args shows nothing, but the Makefile itself reads like a table of contents).
+
+### Mermaid Architecture Diagrams
+
+Replaced the ASCII one-liner architecture diagram in the README with 4 Mermaid diagrams that GitHub renders natively:
+
+1. **Pipeline Flow** — the full generation → validation → retry → quality → composite flow, color-coded by stage type (input, processing, output, warning)
+2. **Quality Evaluation Layers** — all 8 checks split into deterministic vs LLM-based, with percentage weights flowing into the composite score
+3. **Hook Generation Matrix** — visualizes how 1 product fans out to 3 channels x 3 hook types = 9 hooks
+4. **File Dependency Map** — every source file and how they import from each other, including test coverage lines
+
+**Why Mermaid over ASCII?** GitHub renders `\`\`\`mermaid` blocks as interactive SVG diagrams. They're zoomable, have hover states, and look professional. For a take-home submission, visual polish signals that you care about communication — which is explicitly called out in the evaluation criteria.
