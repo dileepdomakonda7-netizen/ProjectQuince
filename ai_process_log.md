@@ -164,3 +164,74 @@ This single sentence — anchoring "generic" to the actual categories in our dat
 **What I changed manually:** The AI put Anthropic as the first priority in `_get_provider()`. I reordered to check Groq first since it's free — makes the project runnable by any reviewer without spending API credits. Small change, big impact on first-run experience.
 
 **Later addition:** After getting multi-provider working sequentially, I realized running them one-at-a-time was slow and I couldn't easily diff the outputs. So I built `compare_providers.py` — it detects all configured providers from env vars, runs them in parallel using `ThreadPoolExecutor`, saves per-provider output to `provider_outputs/hooks_<provider>.json`, and prints a comparison table (speed, pass rate, sample hooks). This is the kind of tool I'd want in production: before committing to a model, you A/B test outputs side-by-side.
+
+---
+
+## End-to-End Validation Run (Claude Sonnet)
+
+Ran the full pipeline against Claude Sonnet (`claude-sonnet-4-20250514`) to verify the entire system works end-to-end. 10 products × 3 channels × 3 hook types = 90 hooks generated in ~100 seconds.
+
+### Results Summary
+
+| Stage | Result |
+|---|---|
+| Product validation (Pydantic) | 10/10 valid |
+| Hook generation | 90 hooks generated |
+| Automated validation | **89/90 passed (98.9%)** |
+| Cross-product dedup | 1 near-duplicate pair flagged |
+| Composite quality score | 0.993/1.000 (2 dimensions, fast mode) |
+
+### The Validator Caught a Real LLM Error
+
+Out of 90 hooks, exactly one failed — and it was a **legitimate catch**, not a false positive:
+
+```
+Product:   European Linen Duvet Cover Set
+Channel:   email_subject
+Hook Type: value_driven
+Text:      "$149 vs $344 retail—no middleman markup here"
+FAIL:      [price_accuracy] Unverified prices: $149
+```
+
+The actual product price is `$149.90`, but Claude rounded it down to `$149` in the hook text. The price accuracy validator correctly flagged this because `$149` doesn't match any valid representation of the product price (`149.9`, `149.90`, `$149.90`).
+
+**Why this is a meaningful catch:** In a marketing context, showing `$149` instead of `$149.90` is technically a pricing error. If this went to production, Quince could face customer complaints ("the ad said $149 but checkout says $149.90") or even FTC issues around price accuracy in advertising. The validator's strictness here is exactly right — it's better to reject and regenerate than to publish an incorrect price.
+
+**What this validates about the architecture:**
+1. The price accuracy check (Bug 1 fix with multi-format matching) works correctly in production
+2. The retry mechanism would catch this on regeneration — the error feedback would tell the LLM to use the exact price
+3. Even a strong model like Claude Sonnet occasionally takes shortcuts with numbers, which is why deterministic post-validation is non-negotiable
+
+### Brand Voice Grader Spot Check
+
+Also ran the brand voice grader on a sample hook to verify the LLM-as-Copy-Editor layer:
+
+```
+Hook:    "Grade-A Mongolian cashmere: 15.8-16.2 microns, 12 gauge knit,
+          34-36mm fibers. Premium craft."
+Product: Mongolian Cashmere Crewneck Sweater
+
+Scores:
+  quality_premium:    1/1
+  value_proposition:  1/1
+  sustainability:     1/1
+  accuracy:           1/1
+  justification:      "All technical specifications (15.8-16.2 microns,
+                       12 gauge knit, 34-36mm fibers) match the product
+                       data exactly. Uses premium language with 'Grade-A'
+                       and 'Premium craft.' No violations found."
+```
+
+The grader correctly verified that every technical claim in the hook traces back to the product JSON — micron range, gauge, fiber length all match. This is the accuracy guardrail working as designed: the grader acts as a fact-checker, cross-referencing the hook against the source data.
+
+### Dedup Caught Cross-Product Templating
+
+The dedup analysis flagged 1 near-duplicate pair at 75% word overlap:
+
+```
+[email_subject/educational] 75% similar:
+  Mongolian Cashmere Crewneck Sweater: "15.8-16.2 micron cashmere: what makes it grade-A"
+  Mongolian Cashmere Tee:              "15.8-16.2 micron Mongolian cashmere luxury"
+```
+
+This is a correct flag — both hooks reference the same micron range because both products genuinely share that material spec. But as ad copy, they're too similar to run simultaneously. In production, this signal would trigger prompt refinement to force each hook to reference a *different* product attribute (e.g., the tee's lightweight construction vs. the crewneck's cozy weight).
