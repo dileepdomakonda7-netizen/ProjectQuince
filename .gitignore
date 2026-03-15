@@ -1,0 +1,31 @@
+# Generated output files (re-created by running the pipeline)
+generated_hooks.json
+validation_report.json
+grading_report.json
+quality_report.json
+composite_report.json
+
+# Provider comparison outputs
+provider_outputs/
+
+# Claude Code
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Environment
+.env
+*.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
