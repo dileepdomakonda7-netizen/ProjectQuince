@@ -19,9 +19,120 @@ python3 pipeline.py
 
 ## Architecture
 
+### Pipeline Flow
+
+```mermaid
+flowchart LR
+    A[products.json\n10 real Quince products] --> B[Pydantic\nValidation]
+    B --> C[Prompt Assembly\n+ Brand Voice Rubric]
+    C --> D[LLM Generation\nwith retry loop]
+    D --> E[generated_hooks.json\n90 hooks]
+    E --> F{Automated\nValidation}
+    F -->|Pass| G[Quality\nEvaluation]
+    F -->|Fail| H[Retry with\nerror feedback]
+    H --> D
+    G --> I[Composite\nScore 0.0-1.0]
+
+    style A fill:#e8f4f8
+    style E fill:#e8f4f8
+    style I fill:#d4edda
+    style H fill:#fff3cd
 ```
-Raw Product JSON → Prompt Assembly → LLM Generation → Validation → Quality Judges → Composite Score
-     (Step 1)         (Step 2)          (Step 2)        (Step 3-4)     (Step 5)        (Step 6)
+
+### Quality Evaluation Layers
+
+```mermaid
+flowchart TB
+    subgraph Deterministic ["Deterministic (no API key needed)"]
+        V1[Character Limits\nFB≤125 Email≤60 SMS≤160]
+        V2[Forbidden Keywords\n19 banned terms]
+        V3[Hallucination Patterns\n% off, free shipping, BOGO]
+        V4[Price Accuracy\ncross-ref against product JSON]
+        V5[Cross-Product Dedup\nJaccard similarity > 0.70]
+    end
+
+    subgraph LLMJudges ["LLM-as-Judge"]
+        G1[Brand Voice Grader\n4 dimensions, 0/1 each\nadversarial prompt]
+        G2[Specificity Judge\n1-5 scale\nproduct-unique attributes]
+        G3[Channel-Fit Judge\n1-5 scale\nQuince-aware channel norms]
+    end
+
+    subgraph Composite ["Composite Score"]
+        CS[Weighted Average\n0.0 - 1.0]
+    end
+
+    V1 & V2 & V3 & V4 --> |20%| CS
+    V5 --> |20%| CS
+    G1 --> |20%| CS
+    G2 --> |25%| CS
+    G3 --> |15%| CS
+
+    style Deterministic fill:#f0f7ff
+    style LLMJudges fill:#fff8f0
+    style Composite fill:#f0fff0
+```
+
+### Hook Generation Per Product
+
+```mermaid
+flowchart LR
+    P[Product Data] --> FB[Facebook Ad\n≤125 chars]
+    P --> EM[Email Subject\n≤60 chars]
+    P --> SM[SMS\n≤160 chars]
+
+    FB --> E1[Educational]
+    FB --> V1[Value-Driven]
+    FB --> L1[Lifestyle]
+
+    EM --> E2[Educational]
+    EM --> V2[Value-Driven]
+    EM --> L2[Lifestyle]
+
+    SM --> E3[Educational]
+    SM --> V3[Value-Driven]
+    SM --> L3[Lifestyle]
+
+    style P fill:#e8f4f8
+    style FB fill:#fff3cd
+    style EM fill:#fff3cd
+    style SM fill:#fff3cd
+```
+
+> **10 products x 3 channels x 3 hook types = 90 hooks per pipeline run**
+
+### File Dependency Map
+
+```mermaid
+flowchart TB
+    products[products.json] --> models[models.py\nPydantic schemas]
+    models --> gen[hook_generator.py\nLLM generation + retry]
+    models --> val[validator.py\n4-rule validation]
+
+    gen --> hooks[generated_hooks.json]
+    hooks --> val
+    hooks --> grader[brand_voice_grader.py\nLLM-as-Copy-Editor]
+    hooks --> judges[quality_judges.py\nspecificity + channel fit + dedup]
+
+    val --> pipe[pipeline.py\norchestrator]
+    grader --> pipe
+    judges --> pipe
+    gen --> pipe
+
+    pipe --> demo[demo.py\nquick preview]
+    gen --> compare[compare_providers.py\nparallel A/B testing]
+
+    tests1[test_validator.py\n49 unit tests] -.-> val
+    tests1 -.-> models
+    tests1 -.-> judges
+    tests2[test_integration.py\n8 integration tests] -.-> gen
+    tests2 -.-> val
+    tests2 -.-> judges
+
+    style products fill:#e8f4f8
+    style hooks fill:#e8f4f8
+    style pipe fill:#d4edda
+    style tests1 fill:#f5f5f5
+    style tests2 fill:#f5f5f5
 ```
 
 ## All Commands
@@ -166,6 +277,24 @@ make clean       # Remove generated output files
 
 Auto-detected based on which environment variable is set. Set multiple keys and run `make compare` to evaluate providers side-by-side.
 
+## Sample Output (Claude Sonnet)
+
+Pre-generated output is in `sample_output/` — no setup needed to review hook quality.
+
+**Mongolian Cashmere Crewneck Sweater — Facebook Ad (≤125 chars):**
+
+| Hook Type | Generated Copy | Chars |
+|-----------|---------------|-------|
+| Educational | *"15.8-16.2 micron Mongolian cashmere with 12-gauge construction—that's what makes luxury soft."* | 93 |
+| Value-Driven | *"Premium Mongolian cashmere crewneck for $50. No middleman markup means no $148 retail price."* | 92 |
+| Lifestyle | *"Cozy weight cashmere that regulates temperature during long client meetings and weekend coffee runs."* | 100 |
+
+**End-to-end run stats:**
+- **90 hooks** generated (10 products x 3 channels x 3 types) in ~100s
+- **89/90 passed** validation (1 legitimate price-rounding catch: `$149` vs `$149.90`)
+- **0.998 corpus uniqueness** — 1 near-duplicate pair correctly flagged
+- **4/4 brand voice** on spot-checked hooks with full justification traces
+
 ## See Also
 
 - `technical_note.md` — 1-page strategy document (pipeline, metrics, quality loop)
@@ -173,12 +302,3 @@ Auto-detected based on which environment variable is set. Set multiple keys and 
 - `IMPROVEMENT_PLAN.md` — Honest self-assessment and prioritized improvements
 - `ai_process_log.md` — AI-assisted development process + human bug fixes
 - `data_sourcing_log.md` — How real Quince product data was sourced
-
-## Sample Output
-
-Pre-generated output from Claude Sonnet is in `sample_output/` so you can review hook quality without running the pipeline. Key stats from the end-to-end run:
-
-- **90 hooks** generated (10 products x 3 channels x 3 types) in ~100s
-- **89/90 passed** validation (1 legitimate price-rounding catch: `$149` vs `$149.90`)
-- **0.998 corpus uniqueness** — 1 near-duplicate pair correctly flagged
-- **4/4 brand voice** on spot-checked hooks with full justification traces
